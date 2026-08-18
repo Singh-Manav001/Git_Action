@@ -1,34 +1,19 @@
-name: Build Project
+name: Building Blocks
 
-on:
-  push:
-    branches:
-      - main
-
-  pull_request:
-    branches:
-      - main
+on: push
 
 jobs:
-  build:
+  echo-hello:
     runs-on: ubuntu-latest
-
     steps:
-      # 1. Get the project code
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      # 2. Install Node.js
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      # 3. Install dependencies
-      - name: Install dependencies
-        run: npm ci
-
-      # 4. Build the project
-      - name: Build project
-        run: npm run build
+      - name: Say hello
+        run: echo "Hello, World!"
+  echo-goodbye:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Failed step
+        run: |
+          echo "This step will fail"
+          exit 1
+      - name: Say goodbye
+        run: echo "Goodbye, world!"
